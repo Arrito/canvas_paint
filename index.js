@@ -23,20 +23,24 @@ clearButton.addEventListener('click', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
 
-canvas.addEventListener('mousedown', (e) => {
+// Обработчик для начала рисования
+const startDrawing = (e) => {
     isDrawing = true;
-    lastX = e.offsetX;
-    lastY = e.offsetY;
-});
+    lastX = e.offsetX || e.touches[0].clientX - canvas.offsetLeft;
+    lastY = e.offsetY || e.touches[0].clientY - canvas.offsetTop;
+};
 
-canvas.addEventListener('mouseup', () => {
+// Обработчик для остановки рисования
+const stopDrawing = () => {
     isDrawing = false;
-});
+};
 
-canvas.addEventListener('mousemove', (e) => {
+// Обработчик для рисования
+const draw = (e) => {
     if (!isDrawing) return;
-    const currentX = e.offsetX;
-    const currentY = e.offsetY;
+    const currentX = e.offsetX || e.touches[0].clientX - canvas.offsetLeft;
+    const currentY = e.offsetY || e.touches[0].clientY - canvas.offsetTop;
+    
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(currentX, currentY);
@@ -45,4 +49,20 @@ canvas.addEventListener('mousemove', (e) => {
     ctx.stroke();
     lastX = currentX;
     lastY = currentY;
+};
+
+// Обработчики для событий мыши
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mousemove', draw);
+
+// Обработчики для событий на сенсорных экранах
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    startDrawing(e);
+});
+canvas.addEventListener('touchend', stopDrawing);
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    draw(e);
 });
