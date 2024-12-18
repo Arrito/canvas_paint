@@ -10,12 +10,17 @@ let lastY = 0;
 let currentColor = '#000000';
 
 const colorPalette = document.getElementById("color-palette");
+const clearButton = document.getElementById("clear-button");
 
 // Обработчик для выбора цвета из палитры
 colorPalette.addEventListener('click', (e) => {
     if (e.target.classList.contains('color-box')) {
         currentColor = e.target.getAttribute('data-color');
     }
+});
+
+clearButton.addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
 
 canvas.addEventListener('mousedown', (e) => {
@@ -40,8 +45,4 @@ canvas.addEventListener('mousemove', (e) => {
     ctx.stroke();
     lastX = currentX;
     lastY = currentY;
-});
-
-canvas.addEventListener('dblclick', () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
