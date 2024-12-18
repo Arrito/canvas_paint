@@ -12,6 +12,8 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    position: relative;
+    gap: 10px;
 }
 
 canvas {
@@ -19,15 +21,18 @@ canvas {
 }
 
 .color-palette {
+    position: absolute;
+    bottom: 100px;
     display: flex;
-    margin-bottom: 10px;
+    flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .color-box {
     width: 30px;
     height: 30px;
-    margin: 0 5px;
+    margin: 5px;
     border: 1px solid #ccc;
     cursor: pointer;
 }
@@ -36,10 +41,9 @@ canvas {
     border: 1px solid #000;
 }
 
-#clear-button {
-    display: flex;
-    margin-bottom: 140px;
-    justify-content: center;
+#clear-button { 
+    position: absolute;
+    bottom: 50px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -47,8 +51,24 @@ canvas {
     border: 1px solid #ccc;
     color: white;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 #clear-button:hover {
     background-color: #c4c4c4;
 }
+
+@media (max-width: 600px) {
+    .color-box:hover {
+        border: 1px solid #ccc;
+    }
+
+    #clear-button:hover {
+        background-color: transparent;
+    }
+
+    .color-box, #clear-button {
+        pointer-events: auto;
+    }
+}
+
