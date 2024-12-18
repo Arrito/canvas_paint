@@ -7,6 +7,16 @@ canvas.height = window.innerHeight;
 let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
+let currentColor = '#000000';
+
+const colorPalette = document.getElementById("color-palette");
+
+// Обработчик для выбора цвета из палитры
+colorPalette.addEventListener('click', (e) => {
+    if (e.target.classList.contains('color-box')) {
+        currentColor = e.target.getAttribute('data-color');
+    }
+});
 
 canvas.addEventListener('mousedown', (e) => {
     isDrawing = true;
@@ -25,7 +35,7 @@ canvas.addEventListener('mousemove', (e) => {
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(currentX, currentY);
-    ctx.strokeStyle = 'black';
+    ctx.strokeStyle = currentColor;
     ctx.lineWidth = 5;
     ctx.stroke();
     lastX = currentX;

@@ -1,7 +1,37 @@
-body {
+html, body {
     margin: 0;
-    background-color: cadetblue;
+    padding: 0;
+    overflow: hidden;  /* Отключаем прокрутку */
+    height: 100%;      /* Устанавливаем высоту в 100% */
 }
+
+body {
+    background-color: cadetblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
 canvas {
     display: block;
+}
+
+.color-palette {
+    display: flex;
+    margin-top: -100px;
+    justify-content: center;
+}
+
+.color-box {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.color-box:hover {
+    border: 1px solid #000;
 }
