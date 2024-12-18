@@ -20,7 +20,7 @@ canvas {
 
 .color-palette {
     display: flex;
-    margin-top: -100px;
+    margin-bottom: 10px;
     justify-content: center;
 }
 
@@ -37,7 +37,9 @@ canvas {
 }
 
 #clear-button {
-    margin-top: 10px;
+    display: flex;
+    margin-bottom: 140px;
+    justify-content: center;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -48,5 +50,5 @@ canvas {
 }
 
 #clear-button:hover {
-    background-color: #b4b4b4;
+    background-color: #c4c4c4;
 }
